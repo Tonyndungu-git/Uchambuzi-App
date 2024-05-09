@@ -1,0 +1,24 @@
+<!-- clean_data_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Data Results</title>
+</head>
+<body>
+    <h1>Clean Data Results</h1>
+    <div>
+        {% if cleaning_results %}
+            <ul>
+                {% for column, result in cleaning_results.items %}
+                    <li>{{ column }}: {{ result }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No issues found in the data.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

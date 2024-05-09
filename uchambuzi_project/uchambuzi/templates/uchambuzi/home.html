@@ -1,0 +1,20 @@
+<!-- uchambuzi/templates/uchambuzi/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Uchambuzi</title>
+</head>
+<body>
+    <h1>Welcome to Uchambuzi</h1>
+    <p>This is your platform for data analysis and exploration.</p>
+    <p>Start your journey by exploring the different features.</p>
+    <ul>
+        <li><a href="{% url 'data_collection_cleaning' %}">Data Collection and Cleaning</a></li>
+        <li><a href="{% url 'eda' %}">Exploratory Data Analysis</a></li>
+        <!-- Add links to other features as needed -->
+    </ul>
+</body>
+</html>

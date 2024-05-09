@@ -1,0 +1,53 @@
+<!-- uchambuzi/templates/uchambuzi/data_collection.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection</title>
+</head>
+<body>
+    <h1>Data Collection</h1>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    
+    {% if preview_data and not preview_data.empty %}
+    <h2>Preview of Data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for column in preview_data.columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in preview_data.iterrows %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No data to display.</p>
+    {% endif %}
+
+{% if preview_data_html %}
+    <h2>Preview of Data</h2>
+    <div>{{ preview_data_html | safe }}</div>
+{% else %}
+    <p>No data to display.</p>
+{% endif %}
+
+</body>
+</html>
