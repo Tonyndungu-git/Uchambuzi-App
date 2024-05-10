@@ -1,0 +1,42 @@
+Unnamed: 0,Unnamed: 1
+,Task
+,
+,"You have been provided with 3 excel workbooks. Namely,"
+,
+,1. Box Placement
+,2. Wet Harvest
+,3. Dry Harvest
+,
+,"The workbooks are a result of the enumerators filling in box placement, wet harvest and dry harvest forms during the crop cuts experiment process."
+,
+,"The crop cuts experiment process is a process whereby enumerators are hired, trained and visit farmers to go and measure their yields. We equip the enumerators with a digital survey data collection application called Mavuno. "
+,
+,These enumerators conduct 3 farm visits. 
+,"The first visit is called box placement. It is during this visit that they get to fill the box placement survey. The key information captured by box placement measurement form is the farmers identification details, the size and the number of the boxes placed, the number of crops in the farm, the health of the crops, the GPS location of the farm and the picture of the farm."
+,
+,The main activity conducted during the second visit is to measure the fresh weight of the harvest. We have labelled this activity wet harvesting. The wet harvest measurement form is used to record the weight of the crops immediately harvested from the boxes randomly placed on the farm. 
+,
+,"Later on after the crops are dried, our enumerators conduct a third visit to go and measure the dry weights of the crops harvested. The dry weights are recorded using a dry harvest measurement form."
+,
+,The enumerators normally place 2 boxes on the farm. The standard dimensions of these boxes are 8 meters by 5 meters. It is from these boxes that the enumerators harvest and not the whole field. A protocol is normally provided to guide the enumerators on how to place the boxes in an objective way. Sometimes due to obstacles on the field the enumerator is forced to place one box or revise the standard dimension. The dimensions of the box are normally captured under the box placement form.
+,
+,Objective:
+,Obtain the average yield per hectare per district in metric tonnes using cleaned data.  Note that the enumerators have reported their weights in kgs.
+,
+,Tasks
+,"1. Merge the three forms using the field labelled @case_id using Google sheet, Excel, R, Python or whichever tool you deem fit."
+,2. You are to find enumerators who are likely not entering correct data (use username column to identify enumerators).  Some indications of this are:
+,               1. Crazy box dimensions
+,               2. False zero yields
+,               3. Dry weight exceeding wet weight
+,"               4. Non-compliant data sets i.e no box dimension yet there is yield data captured. Zero wet weight yield but greater than zero dry weight, harvest crop mixed with other crops"
+,"               5. Note that other variables in the dataset might also explain funny results, check other variables.  You can also look for those types of variables. "
+,"3. Use the box placement latitude and longitude, to come up with a spatial distribution of the data points on a map (you can use tools such as QGIS, Google Maps, ArcGIS or whichever tool you deem fit).  Consider this as well when assessing enumerator performance"
+,"4. Compute the average yield in Mt/Ha for each observation, using the dry weight"
+,"5. Create filters in a new column or columns to determine which types of yields we should consider outliers or errors and fill those columns so that we can filter the outliers on and off as needed. (if using code, clearly show these filters)"
+,6. Identify major problems affecting the crops per district or state. Use box1_problem column. Is there consistency?
+,7. Write a short and easy to understand report to share with your supervisor. The report should:
+,"           - Show what you think the average yields per hectare in Metric tonnes are, having filtered out/cleaned erroneous data."
+,"           - Explain the erroneous data you filtered/cleaned out and how (be clear, use bullet point type explanations)"
+,           - Show the major factors/problems affecting the crops per district and determine if there are any inconsistencies 
+,           - Explain if you think any enumerators submitted data that was suspicious to the level of needing to be terminated. 

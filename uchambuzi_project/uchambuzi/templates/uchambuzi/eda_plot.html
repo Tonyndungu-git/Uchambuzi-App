@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA Plot</title>
+</head>
+<body>
+    <h1>EDA Plot</h1>
+    <p>X-axis: {{ x_axis }}</p>
+    <p>Y-axis: {{ y_axis }}</p>
+    <img src="/media/eda_plots/{{ plot_filename }}" alt="Plot">
+    <a href="{% url 'eda-view' %}">Back to EDA</a>
+</body>
+</html>

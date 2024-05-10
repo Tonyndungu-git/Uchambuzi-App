@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploratory Data Analysis</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#selected_file').change(function() {
+                var selectedFile = $(this).val();
+                $.ajax({
+                    url: '/get_columns/',
+                    type: 'GET',
+                    data: {
+                        'selected_file': selectedFile
+                    },
+                    success: function(response) {
+                        var xSelected = $('#x_axis').val();
+                        var ySelected = $('#y_axis').val();
+                        $('#x_axis').empty();
+                        $('#y_axis').empty();
+                        response.columns.forEach(function(column) {
+                            $('#x_axis').append($('<option>', {
+                                value: column,
+                                text: column
+                            }));
+                            $('#y_axis').append($('<option>', {
+                                value: column,
+                                text: column
+                            }));
+                        });
+                        $('#x_axis').val(xSelected);
+                        $('#y_axis').val(ySelected);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching columns:', error);
+                    }
+                });
+            });
+
+            $('#x_axis').change(function() {
+                var selectedFile = $('#selected_file').val();
+                var selectedXAxis = $(this).val();
+                updateYAxisOptions(selectedFile, selectedXAxis);
+            });
+
+            $('#y_axis').change(function() {
+                var selectedFile = $('#selected_file').val();
+                var selectedYAxis = $(this).val();
+                updateXAxisOptions(selectedFile, selectedYAxis);
+            });
+
+            function updateYAxisOptions(selectedFile, selectedXAxis) {
+                $.ajax({
+                    url: '/get_columns/',
+                    type: 'GET',
+                    data: {
+                        'selected_file': selectedFile
+                    },
+                    success: function(response) {
+                        var ySelected = $('#y_axis').val();
+                        $('#y_axis').empty();
+                        response.columns.forEach(function(column) {
+                            if (column !== selectedXAxis) {
+                                $('#y_axis').append($('<option>', {
+                                    value: column,
+                                    text: column
+                                }));
+                            }
+                        });
+                        $('#y_axis').val(ySelected);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching columns:', error);
+                    }
+                });
+            }
+
+            function updateXAxisOptions(selectedFile, selectedYAxis) {
+                $.ajax({
+                    url: '/get_columns/',
+                    type: 'GET',
+                    data: {
+                        'selected_file': selectedFile
+                    },
+                    success: function(response) {
+                        var xSelected = $('#x_axis').val();
+                        $('#x_axis').empty();
+                        response.columns.forEach(function(column) {
+                            if (column !== selectedYAxis) {
+                                $('#x_axis').append($('<option>', {
+                                    value: column,
+                                    text: column
+                                }));
+                            }
+                        });
+                        $('#x_axis').val(xSelected);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching columns:', error);
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Exploratory Data Analysis</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="selected_file">Select a file:</label>
+        <select name="selected_file" id="selected_file">
+            {% for file in media_files %}
+            <option value="{{ file }}">{{ file }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="x_axis">X-axis:</label>
+        <select name="x_axis" id="x_axis"></select>
+        <br><br>
+        <label for="y_axis">Y-axis:</label>
+        <select name="y_axis" id="y_axis"></select>
+        <br><br>
+        <label for="plot_type">Select plot type:</label>
+        <select name="plot_type" id="plot_type">
+            <option value="scatter">Scatter Plot</option>
+            <option value="histogram">Histogram</option>
+            <option value="boxplot">Box Plot</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    {% if form.errors %}
+    <ul class="errorlist">
+        {% for field in form %}
+        {% for error in field.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
