@@ -1,3 +1,5 @@
+# Still Ongoing
+
 # Uchambuzi - Comprehensive Data Science App
 
 Uchambuzi is a comprehensive data science application designed to cover the entire data science pipeline. With a focus on simplicity, flexibility, and efficiency, Uchambuzi empowers users to seamlessly navigate through various stages of the data science workflow, from data collection to model deployment.
