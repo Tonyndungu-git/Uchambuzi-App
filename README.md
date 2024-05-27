@@ -56,13 +56,6 @@ Uchambuzi is a comprehensive data science application designed to cover the enti
 - **Comprehensive Documentation**: Document code, functionalities, and usage instructions to facilitate understanding and collaboration.
 - **Testing Procedures**: Implement testing procedures to ensure reliability, scalability, and maintainability of the application.
 
-## Getting Started
-
-To get started with Uchambuzi, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Install the necessary dependencies using `pip install -r requirements.txt`.
-3. Run the application using `python app.py` and access it through your web browser.
 
 
 ## Contributors
